@@ -4,6 +4,10 @@ import locale
 import csv
 
 
+# Initial data cleansing with regex 
+
+
+
 with open('2018-December.txt', 'rt') as f:
     Lines = f.read()
 
@@ -16,17 +20,16 @@ with open('2018-December.txt', 'rt') as f:
         w.writelines(rep)
 
 
-
-
 index0 = 0
 index1 = 1
 index2 = 2
 
+
 with open('data1.txt', 'r') as r:
     file = r.readlines()
 
+
 # Converting 3-2 lines into a single line
-    
     if file[index0] == '\n':
         del file[index0]
 
@@ -43,6 +46,7 @@ with open('data1.txt', 'r') as r:
 
                     newvar = file[index0].replace('\n', '') + '  ' + newvar_
 
+
                 s = io.StringIO(newvar)
                 TheCase = s.readlines()
 
@@ -51,14 +55,13 @@ with open('data1.txt', 'r') as r:
                     if  h.startswith('#'):
                         newCase = h
 
+                #Replacing Int with # and removing extra spaces
                 newCase2 = re.sub('.#\d{2,4}.*','', newCase)
                 newCase3= re.sub(' {3}','  ', newCase2)
 
+
                 # Comma separating
                 newCase4 = re.sub(' {1,}', ',', newCase3)
-
-
-
                 for i in newCase4.splitlines():
                     y.write(i+'\n')
 
@@ -68,8 +71,7 @@ with open('data1.txt', 'r') as r:
             index2 += 1
 
 
-# Chose an Excel compatible csv delimiter.
-
+# an Excel compatible csv delimiter.
 locale.setlocale(locale.LC_ALL, '')
 DELIMITER = ',' if locale.localeconv()['decimal_point'] == ';' else ';'
 
