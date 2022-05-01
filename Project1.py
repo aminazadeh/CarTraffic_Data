@@ -1,14 +1,13 @@
+import io
 import re
+import locale
+import csv
 
-<<<<<<< HEAD
-=======
-# Initial data cleansing with regex 
->>>>>>> f8fbdae06f0129b1b6d9fc9f0f5c0cc2a68e8ad0
 
 with open('2018-December.txt', 'rt') as f:
     Lines = f.read()
 
-    with open('dat.txt', 'w') as w:
+    with open('data1.txt', 'w') as w:
 
         replace1 = re.sub('\n*\w+ \d+.{4}[a-z]* \d{4} \d*:\d*', '', Lines)
         replace2 = re.sub('[1-9]*.=', '', replace1)
@@ -16,66 +15,71 @@ with open('2018-December.txt', 'rt') as f:
         rep = re.sub('( {3}| {4}| {5}| )', ' ', replace3)
         w.writelines(rep)
 
-<<<<<<< HEAD
-#^Int.
-#Int\s*\d+\s*
-=======
->>>>>>> f8fbdae06f0129b1b6d9fc9f0f5c0cc2a68e8ad0
+
 
 
 index0 = 0
 index1 = 1
 index2 = 2
 
-<<<<<<< HEAD
-=======
-# Converting 2 or 3 lines to a single line
->>>>>>> f8fbdae06f0129b1b6d9fc9f0f5c0cc2a68e8ad0
-with open('newdata.txt', 'r') as r:
+with open('data1.txt', 'r') as r:
     file = r.readlines()
 
-
+# Converting 3-2 lines into a single line
+    
     if file[index0] == '\n':
         del file[index0]
 
-    while (index2 < len(file) - 1):
-        if len(file[index0]) > len(file[index1]):
+    with open('cleaned.txt', 'w') as y:
 
-            newvar = file[index0].replace('\n', '') + '  ' + file[index1].replace('\n', '')
-            flag = file[index1]
+        while (index2 < len(file) - 1):
+            if len(file[index0]) > len(file[index1]):
 
-            if len(flag) > len(file[index2]):
-                newvar_ = flag.replace('\n', '') + '  ' + file[index2].replace('\n', '')
+                newvar = file[index0].replace('\n', '') + '  ' + file[index1].replace('\n', '')
+                flag = file[index1]
 
-                newvar = file[index0].replace('\n', '') + '  ' + newvar_
+                if len(flag) > len(file[index2]):
+                    newvar_ = flag.replace('\n', '') + '  ' + file[index2].replace('\n', '')
 
+                    newvar = file[index0].replace('\n', '') + '  ' + newvar_
 
-            print(newvar)
-        index0 += 1
-        index1 += 1
-        index2 += 1
-        
-<<<<<<< HEAD
+                s = io.StringIO(newvar)
+                TheCase = s.readlines()
 
 
-    #Test
-    # while(index2 < len(file) - 1):
-    #     if len(file[index0]) > len(file[index1]):
-    #         flag = file[index1]
-    #
-    #         if len(flag) > len(file[index2]):
-    #             newvar_ = flag.replace('\n', '') + '  ' + file[index2].replace('\n', '')
-    #
-    #             newvar = file[index0].replace('\n', '') + '  ' + newvar_
-    #             print(newvar)
-    #     index0 += 1
-    #     index1 += 1
-    #     index2 += 1
+                for h in TheCase:
+                    if  h.startswith('#'):
+                        newCase = h
+
+                newCase2 = re.sub('.#\d{2,4}.*','', newCase)
+                newCase3= re.sub(' {3}','  ', newCase2)
+
+                # Comma separating
+                newCase4 = re.sub(' {1,}', ',', newCase3)
 
 
 
+                for i in newCase4.splitlines():
+                    y.write(i+'\n')
 
 
+            index0 += 1
+            index1 += 1
+            index2 += 1
 
-=======
->>>>>>> f8fbdae06f0129b1b6d9fc9f0f5c0cc2a68e8ad0
+
+# Chose an Excel compatible csv delimiter.
+
+locale.setlocale(locale.LC_ALL, '')
+DELIMITER = ',' if locale.localeconv()['decimal_point'] == ';' else ';'
+
+with open('cleaned.txt', 'r') as r:
+    file = r.read()
+
+    split = file.splitlines()
+
+    with open('file.csv', 'w', newline='') as csv_writer:
+        csv_writer = csv.writer(csv_writer, delimiter = DELIMITER)
+
+        for item in split:
+            csv_writer.writerow([item])
