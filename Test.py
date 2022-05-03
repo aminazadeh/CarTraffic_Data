@@ -4,3 +4,4 @@ while(True):
     break
 
 print("hi i'm ali safavi ")
+print("hi i'm ali safavi ")
