@@ -17,8 +17,7 @@ with open('2018-December.txt', 'rt') as f:
         replace3 = re.sub('(\s{3,4})', ' ', replace2)
         w.writelines(replace3)
 
-newvar = []
-newvar_ = []
+
 with open('data1.txt', 'r') as f:
     with open('data2.txt', 'w') as w:
         file = [file.replace('\n', '') for file in f.readlines()]
