@@ -1,4 +1,11 @@
 import re
+import datetime
+
+def convertDate(strDate):
+    format = "%A %d %B %Y %H:%M"
+    date = datetime.strptime(strDate, format)
+    return date.timestamp()*1000
+
 
 with open('2018-December.txt', 'rt') as f:
     Lines = f.read()
