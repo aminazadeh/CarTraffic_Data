@@ -1,0 +1,1 @@
+print("hi i'm ali safavi ")
