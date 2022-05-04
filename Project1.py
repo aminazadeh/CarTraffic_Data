@@ -34,12 +34,31 @@ with open(fileDir, 'rt') as f:
 
     new_d = [k.split(',') for k in lsInput]
 
+filePath = 'C:\\Users\\mehdi\\PycharmProjects\\Project\\out.csv'
 
-    def getCsv(dir):
 
-        with open(dir, 'w',newline='') as f:
+class getData:
+    def __init__(self, Data):
+        self.Data = Data
+
+    def getCsv(self):
+        with open(self.Data, 'w', newline='') as f:
             write = csv.writer(f)
 
             write.writerows(new_d)
 
-getCsv('C:\\Users\\mehdi\\PycharmProjects\\Project\\out.csv')
+    def getArr(self):
+        pass
+
+
+Csv = getData(filePath)
+Csv.getCsv()
+
+#     def getCsv(dir):
+#
+#         with open(dir, 'w',newline='') as f:
+#             write = csv.writer(f)
+#
+#             write.writerows(new_d)
+#
+# getCsv('C:\\Users\\mehdi\\PycharmProjects\\Project\\out.csv')
