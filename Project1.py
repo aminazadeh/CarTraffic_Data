@@ -37,7 +37,7 @@ with open(fileDir, 'rt') as f:
 
     def getCsv(dir):
 
-        with open(dir, 'w') as f:
+        with open(dir, 'w',newline='') as f:
             write = csv.writer(f)
 
             write.writerows(new_d)
