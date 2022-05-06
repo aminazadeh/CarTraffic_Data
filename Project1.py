@@ -34,31 +34,39 @@ with open(fileDir, 'rt') as f:
 
     new_d = [k.split(',') for k in lsInput]
 
-filePath = 'C:\\Users\\mehdi\\PycharmProjects\\Project\\out.csv'
+
+# Removing NA and Zero
+for itemNA in new_d:
+    for j in itemNA:
+        if j == 'NA':
+            itemNA.remove(j)
+
+for item0 in new_d:
+    for i in item0:
+        if i == '0':
+            item0.remove(i)
+
+# Showing the result
+# for _ in new_d:
+#     print(_)
 
 
-class getData:
-    def __init__(self, Data):
-        self.Data = Data
 
-    def getCsv(self):
-        with open(self.Data, 'w', newline='') as f:
-            write = csv.writer(f)
-
-            write.writerows(new_d)
-
-    def getArr(self):
-        pass
+filepath = 'C:\\Users\\mehdi\\PycharmProjects\\Project\\output.csv'
 
 
-Csv = getData(filePath)
-Csv.getCsv()
+def getCsv(filepath):
+    with open(filepath, 'w', newline='') as cf:
+        write = csv.writer(cf)
 
-#     def getCsv(dir):
-#
-#         with open(dir, 'w',newline='') as f:
-#             write = csv.writer(f)
-#
-#             write.writerows(new_d)
-#
-# getCsv('C:\\Users\\mehdi\\PycharmProjects\\Project\\out.csv')
+        write.writerows(new_d)
+
+# Vase estefade badi
+
+def getText(filepath):
+    with open(filepath, 'w') as tf:
+        for _ in new_d:
+            tf.writelines(_)
+
+getCsv(filepath)
+
