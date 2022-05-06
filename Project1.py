@@ -50,7 +50,7 @@ for item0 in new_d:
 # for _ in new_d:
 #     print(_)
 
-new_d.insert(0, ['Intersection', 'Time', '1','2','3','4','5','6','7','8','9','10','11','12','13','14','15'])
+new_d.insert(0, ['Intersection', 'Time', '1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16'])
 
 
 filepath = 'C:\\Users\\mehdi\\PycharmProjects\\Project\\output.csv'
