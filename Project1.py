@@ -41,38 +41,6 @@ with open('outputText.txt', 'r') as r:
 filepath = 'C:\\Users\\mehdi\\PycharmProjects\\Project\\outputText.txt'
 
 
-<<<<<<< HEAD
-=======
-# Removing NA and Zero
-for itemNA in new_d:
-    for j in itemNA:
-        if j == 'NA':
-            itemNA.remove(j)
-
-for item0 in new_d:
-    for i in item0:
-        if i == '0':
-            item0.remove(i)
-
-# Showing the result
-# for _ in new_d:
-#     print(_)
-
-new_d.insert(0, ['Intersection', 'Time', '1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16'])
-
-
-filepath = 'C:\\Users\\mehdi\\PycharmProjects\\Project\\output.csv'
-
-
-def getCsv(filepath):
-    with open(filepath, 'w', newline='') as cf:
-        write = csv.writer(cf)
-
-        write.writerows(new_d)
-
-# Vase estefade badi
-
->>>>>>> 4b1f557ed81927e1f60170b82e81991545dc3ffe
 def getText(filepath):
     with open(filepath, 'w') as tf:
         for line in lsInput:
