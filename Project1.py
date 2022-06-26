@@ -30,44 +30,21 @@ with open(fileDir, 'rt') as f:
             continue
         lsInput[i] = row[:5] + "%.2f," % date + row[6:]
 
-    lsInput = [j.replace(',,', ',') for j in lsInput if ',,' in j]
+with open('outputText.txt', 'r') as r:
+    read = r.read()
+    lsInput2 = re.sub('(.+2046)|2047', "", read)
+    lsInput2 = re.sub(',0+', "", lsInput2)
+    lsInput2 = re.sub('[A-Za-z]', "", lsInput2)
+    lsInput2 = re.sub(',,', ",", lsInput2)
+    print(lsInput2)
 
-    new_d = [k.split(',') for k in lsInput]
+filepath = 'C:\\Users\\mehdi\\PycharmProjects\\Project\\outputText.txt'
 
-
-# Removing NA and Zero
-for itemNA in new_d:
-    for j in itemNA:
-        if j == 'NA':
-            itemNA.remove(j)
-
-for item0 in new_d:
-    for i in item0:
-        if i == '0':
-            item0.remove(i)
-
-# Showing the result
-# for _ in new_d:
-#     print(_)
-
-new_d.insert(0, ['Intersection', 'Time', '1','2','3','4','5','6','7','8','9','10','11','12','13','14','15'])
-
-
-filepath = 'C:\\Users\\mehdi\\PycharmProjects\\Project\\output.csv'
-
-
-def getCsv(filepath):
-    with open(filepath, 'w', newline='') as cf:
-        write = csv.writer(cf)
-
-        write.writerows(new_d)
-
-# Vase estefade badi
 
 def getText(filepath):
     with open(filepath, 'w') as tf:
-        for _ in new_d:
-            tf.writelines(_)
+        for line in lsInput:
+            tf.write(line)
+            tf.write('\n')
 
-getCsv(filepath)
-
+getText(filepath)
