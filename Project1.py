@@ -30,17 +30,7 @@ with open(fileDir, 'rt') as f:
             continue
         lsInput[i] = row[:5] + "%.2f," % date + row[6:]
 
-with open('outputText.txt', 'r') as r:
-    read = r.read()
-    lsInput2 = re.sub('(.+2046)|2047', "", read)
-    lsInput2 = re.sub(',0+', "", lsInput2)
-    lsInput2 = re.sub('[A-Za-z]', "", lsInput2)
-    lsInput2 = re.sub(',,', ",", lsInput2)
-    print(lsInput2)
-
 filepath = 'C:\\Users\\mehdi\\PycharmProjects\\Project\\outputText.txt'
-
-
 def getText(filepath):
     with open(filepath, 'w') as tf:
         for line in lsInput:
@@ -48,3 +38,12 @@ def getText(filepath):
             tf.write('\n')
 
 getText(filepath)
+
+
+with open('outputText.txt', 'r') as r:
+    read = r.read()
+    lsInput2 = re.sub('(.+2046)|2047', "", read)
+    lsInput2 = re.sub(',0+', "", lsInput2)
+    lsInput2 = re.sub('[A-Za-z]', "", lsInput2)
+    lsInput2 = re.sub(',,', ",", lsInput2)
+    print(lsInput2)
